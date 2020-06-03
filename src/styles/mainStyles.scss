@@ -1,0 +1,197 @@
+@import "colors";
+@import "mixins";
+
+body {
+  direction: rtl;
+  font-family: 'IranianSansRegular'; 
+}
+
+#top-bar {
+  padding: 5px;
+  background-color: $light-purple;
+}
+
+.bars-icon {
+  font-size: 25px;
+}
+
+.brand-name {
+  font-size: 30px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background-color: $dark-purple;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.open-sidenav {
+  width: 200px;
+}
+
+.side-brand-name {
+  padding: 8px 20px 8px 8px;
+  font-size: 40px;
+  color: white;
+  display: block;
+}
+
+.sidenav a {
+  @extend .side-brand-name;
+  text-decoration: none;
+  font-size: 20px;
+  text-align: right;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#calender {
+  @include background;
+}
+
+.top-day {
+  font-size: 5rem;
+}
+
+.top-date {
+  font-size: 1.5rem;
+}
+
+.calender-bottom {
+  padding: 5px 12px 5px 12px;
+}
+
+.calender-bottom span {
+  font-size: 20px;
+}
+
+.week {
+  color: $light;
+}
+
+.day {
+  padding: 0 6px 0 6px; 
+  margin: 5px 0 5px 0;
+}
+
+.today {
+  border-radius: 50%;
+  background-color: $light-light-purple;
+}
+
+.selected-day {
+  border-radius: 50%;
+  background-color: white;
+  color: $dark-purple;
+}
+
+#list {
+  padding-top: 20px;
+}
+
+.list-item-content {
+  border-bottom: 0.3px solid $light-purple;
+}
+
+.list-item-icon {
+  font-size: 50px;
+  color: $light-light-purple;
+  
+}
+
+.list-item-header span {
+  font-size: 25px;
+}
+
+.list-item-body {
+  font-size: 20px;
+  color: $light-black;
+  width: 100%;
+}
+
+.add-to-list-icon {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: $dark-purple;
+  font-size: 50px;
+}
+
+.add-page {
+  height: 100vh;
+  @include background;
+}
+
+.create-a-list {
+  width: 90%;
+  background-color: white;
+  border-radius: 0.6rem;
+}
+
+.create-list-date {
+  color: $light-black;
+}
+
+.dropdown-button {
+  position: relative;
+  width: 200px;
+  padding: 3px 10px 3px 10px;
+  margin: auto;
+  background-color: $dark-purple;
+  color: white;
+  font-size: 18px;
+  border-radius: 0.3rem;
+  border: 1px solid $dark-purple;
+}
+
+.dropdown-items {
+  display: none;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  background-color: white;
+  color: $dark-purple;
+  width: 200px;
+  margin: auto;
+  z-index: 1;
+  border: 1px solid $dark-purple;
+  border-radius: 0.5rem;
+}
+
+.dropdown-items li {
+  border-bottom: 1px solid $dark-purple;
+}
+
+.dropdown-items li:last-child {
+  border: none;
+}
+
+.openDropDown {
+  display: block;
+}
+
+.dropdown-icon-down {
+  transition: all 0.5s ease;
+  transform: rotate(180deg);
+}
+
+.dropdown-items li {
+  padding: 8px;
+  list-style-type: none;
+  text-align: center;
+}
+
+.submit-list, .discard-list {
+  font-size: 50px;
+  color: $light-purple;
+}
