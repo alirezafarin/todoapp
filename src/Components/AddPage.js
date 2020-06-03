@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
+import { addToDb } from '../db/db';
 import history from '../history';
 
 class AddPage extends React.Component {
@@ -71,6 +72,7 @@ class AddPage extends React.Component {
 
   onSubmit = () => {
     if( this.state.time && this.state.field && this.state.text  ) {
+      addToDb(this.state);
       history.push('/');
     }
   }
