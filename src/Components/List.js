@@ -27,7 +27,6 @@ class List extends React.Component {
   }
 
   renderList() {
-    console.log(this.state);
     if(this.state.day) {
       let day = (this.props.date.day ? this.props.date.day : this.state.day);
       return this.state.toDoList.map((toDo) => {
