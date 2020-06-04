@@ -5,3 +5,7 @@ export const addToDb = (data) => {
     data
   }).then((res) => console.log(res)).catch((err) => console.log(err));
 }
+
+export const removeFromDb = (id) => {
+  db.collection('lists').doc(id).delete();
+}

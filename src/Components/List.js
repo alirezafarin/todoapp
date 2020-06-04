@@ -1,8 +1,10 @@
 import React from 'react';
 import persianDate from 'persian-date';
-import db from '../db/firebase';
+import $ from 'jquery';
 
 import ListItem from './ListItem';
+import db from '../db/firebase';
+import { removeFromDb } from '../db/db';
 
 class List extends React.Component {
 
@@ -32,7 +34,7 @@ class List extends React.Component {
       return this.state.toDoList.map((toDo) => {
         if(toDo.day == day) {
           return(
-            <ListItem key={toDo.id} title={toDo.field} time={toDo.time} text={toDo.text}/>
+            <ListItem key={toDo.id} id={toDo.id} title={toDo.field} time={toDo.time} text={toDo.text}/>
           );
         }
       });
@@ -40,10 +42,17 @@ class List extends React.Component {
 
   }
 
+  deleteItem = (e) => {
+    let node = $(e.target).closest('.list-item')[0];
+    let id = node.id;
+    removeFromDb(id);
+    $(node).remove();
+  }
+
   render() {
     return(
       <section id="list">
-        <div className="list-items">
+        <div className="list-items" onClick={(e) => this.deleteItem(e)}>
           {this.renderList()}
         </div>
       </section>

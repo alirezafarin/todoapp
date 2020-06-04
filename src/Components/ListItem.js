@@ -11,7 +11,7 @@ const ListItem = (props) => {
   } 
 
   return(
-    <div className="list-item d-flex pr-3 pb-2">
+    <div id={props.id} className="list-item d-flex pr-3 pb-2">
       <span className="list-item-icon">
         <i className={iconAndTitle[props.title]}></i>
       </span>
