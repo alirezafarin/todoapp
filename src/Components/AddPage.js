@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 
-import { addToDb } from '../db/db';
-import history from '../history';
+import { addToList } from '../actions';
 
 class AddPage extends React.Component {
 
   state = { time: "", field: "", text: "", day: "", month: ""};
 
   componentDidMount() {
-    let month = this.props.match.params.month;
-    let day = this.props.match.params.day;
-    this.setState( { day, month } );
+    let day = this.props.date.sDay;
+    let month = this.props.date.month;
+
+    this.setState({ day, month });
   }
 
   changeTime = (e) => {
@@ -72,8 +73,7 @@ class AddPage extends React.Component {
 
   onSubmit = () => {
     if( this.state.time && this.state.field && this.state.text  ) {
-      addToDb(this.state);
-      history.push('/');
+      this.props.addToList(this.state);
     }
   }
 
@@ -109,4 +109,10 @@ class AddPage extends React.Component {
 
 }
 
-export default AddPage;
+const mapStateToProps = (state) => {
+  return { date: state.date };
+}
+
+export default connect(mapStateToProps, {
+  addToList
+})(AddPage);

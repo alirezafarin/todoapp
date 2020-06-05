@@ -7,10 +7,15 @@ const CalendarItem = (props) => {
     today = "today"; 
   }
 
+  let sDay = "";
+  if( props.sDay ) {
+    sDay = "selected-day";
+  }
+
   return(
     <div className="calender-item d-flex flex-column align-items-center">
       <span className="week">{props.weekDay}</span>
-      <span className={`day ${today}`}>{props.monthDay}</span>
+      <span className={`day ${today} ${sDay}`}>{props.monthDay}</span>
     </div>
   );
 

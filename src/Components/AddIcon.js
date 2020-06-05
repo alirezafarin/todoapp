@@ -1,20 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const AddIcon = (props) => {
+class AddIcon extends React.Component {
 
-  if( !props.date.day ) {
-    return "";
+  render() {
+    if( !this.props.date.sDay ) {
+      return "";
+    }
+
+    return(
+      <div>
+        <Link to="/add" className="add-to-list-icon">
+          <i className="fas fa-plus-circle"></i>
+        </Link>
+      </div>
+    );
   }
-
-  return(
-    <div>
-      <Link to={`add/${props.date.day}/${props.date.month}`} className="add-to-list-icon">
-        <i className="fas fa-plus-circle"></i>
-      </Link>
-    </div>
-  );
-
 }
 
-export default AddIcon;
+const mapStateToProps = (state) => {
+  return { date: state.date };
+}
+
+export default connect(mapStateToProps)(AddIcon);

@@ -1,37 +1,20 @@
 import React from 'react';
-import persianDate from 'persian-date';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 
 import ListItem from './ListItem';
-import db from '../db/firebase';
-import { removeFromDb } from '../db/db';
+import { fetchLists, deleteItem } from '../actions';
 
 class List extends React.Component {
-
-  state = { toDoList : [], day: "" };
   
   componentDidMount() {
-
-    let date = new persianDate();
-    let day = date.calendar().day;
-
-    let addState = (toDoList) => {
-      this.setState({ toDoList, day });
-    }
-
-    db.collection("lists").get().then(function(querySnapshot) {
-      let data = [];
-      querySnapshot.forEach(function(doc) {
-        data.push({ ...doc.data().data, id: doc.id });
-        });
-      addState(data);
-    });
+    this.props.fetchLists();
   }
 
   renderList() {
-    if(this.state.day) {
-      let day = (this.props.date.day ? this.props.date.day : this.state.day);
-      return this.state.toDoList.map((toDo) => {
+    if(this.props.date.day) {
+      let day = (this.props.date.sDay ? this.props.date.sDay : this.props.date.day);
+      return this.props.lists.map((toDo) => {
         if(toDo.day == day) {
           return(
             <ListItem key={toDo.id} id={toDo.id} title={toDo.field} time={toDo.time} text={toDo.text}/>
@@ -41,18 +24,18 @@ class List extends React.Component {
     }
 
   }
-
-  deleteItem = (e) => {
+  
+  //FIXME:
+  deleteFromList = (e) => {
     let node = $(e.target).closest('.list-item')[0];
     let id = node.id;
-    removeFromDb(id);
-    $(node).remove();
+    // this.props.deleteItem(id);
   }
 
   render() {
     return(
       <section id="list">
-        <div className="list-items" onClick={(e) => this.deleteItem(e)}>
+        <div className="list-items" onClick={(e) => this.deleteFromList(e)}>
           {this.renderList()}
         </div>
       </section>
@@ -61,4 +44,11 @@ class List extends React.Component {
 
 }
 
-export default List;
+const mapStateToProps = (state) => {
+  return { lists: state.lists.lists, date: state.date };
+}
+
+export default connect( mapStateToProps, {
+  fetchLists,
+  deleteItem
+} )(List);

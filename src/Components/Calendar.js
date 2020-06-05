@@ -1,22 +1,14 @@
 import React from 'react';
 import $ from 'jquery';
-import persianDate from 'persian-date';
+import { connect } from 'react-redux';
 
 import CalendarItem from './CalendarItem';
+import { fetchDate, selectDay } from '../actions';
 
 class Calendar extends React.Component {
 
-  state = { year: "", month: "", week: "", dWeek: "", day: "", sDay: "" };
-
   componentDidMount() {
-    let date = new persianDate();    
-    let year = date.format('YYYY');
-    let month = date.format('MMMM');
-    let day = date.calendar().day;
-    let week = date.format('dddd');
-    let dWeek = date.calendar().weekday;
-
-    this.setState({ year, month, week, dWeek, day });
+    this.props.fetchDate();
   }
 
   selectDay = (e) => {
@@ -24,18 +16,23 @@ class Calendar extends React.Component {
       $(".selected-day").removeClass("selected-day");
       $(e.target).addClass("selected-day");
       let sDay = $(e.target).text();
-      this.setState({ sDay });
-      this.props.sendDate(this.state.month, sDay); //send date to parent(Home.js)
+      this.props.selectDay(sDay);
     }
   }
 
   renderCalenderItem = () => {
-    if( this.state.year ) {
+    if( this.props.date.year ) {
       let weekDays = [ "جمعه", "پنج", "چهار", "سه", "دو", "یک", "شنبه" ];
       return [1, 2, 3, 4, 5, 6, 7].map((i) => {
-        let day = this.state.day - ( this.state.dWeek - i );
+        let day = this.props.date.day - ( this.props.date.dWeek - i );
+        let sDay = this.props.date.sDay || '';
         return(
-          <CalendarItem key={day} weekDay={weekDays[7-i]} monthDay={day} today={this.state.day === day} />
+          <CalendarItem
+            key={day}
+            weekDay={weekDays[7-i]}
+            monthDay={day}
+            today={this.props.date.day === day}
+            sDay={this.props.date.sDay == day} />
         );
       });
     }
@@ -48,14 +45,14 @@ class Calendar extends React.Component {
           <div className="calender-top d-flex align-items-center justify-content-around">
             <div className="top-date">
               <div className="top-week text-center">
-                {this.state.week}
+                {this.props.date.week}
               </div>
               <div className="top-month">
-                {this.state.year} {this.state.month}
+                {this.props.date.year} {this.props.date.month}
               </div>
             </div>
             <div className="top-day">
-              {this.state.day}
+              {this.props.date.day}
             </div>
           </div> 
           <div className="calender-bottom d-flex justify-content-between" onClick={(e) => this.selectDay(e)}>
@@ -67,4 +64,11 @@ class Calendar extends React.Component {
   }
 }
 
-export default Calendar;
+const mapStateToProps = (state) => {
+  return { date: state.date };
+}
+
+export default connect( mapStateToProps, {
+  fetchDate,
+  selectDay
+} )(Calendar);
