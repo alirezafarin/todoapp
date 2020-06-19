@@ -1,4 +1,4 @@
-const staticCacheName = 'app-static-v2';
+const staticCacheName = 'app-static-v3';
 const assests = [
   './',
   './index.html',
