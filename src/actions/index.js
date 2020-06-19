@@ -38,6 +38,8 @@ export const addToList = (inputs) => {
     dispatch({
       type: ADD_TO_LIST,
     });
+
+    history.push('/');
   }
 }
 
