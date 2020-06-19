@@ -1,4 +1,4 @@
-const staticCacheName = 'app-static-v1';
+const staticCacheName = 'app-static-v2';
 const assests = [
   '/',
   '/index.html',
@@ -34,7 +34,7 @@ self.addEventListener('activate', (e) => {
   );
 })
 
-//add fetch event listener
+//add fetch event listener sadsa
 self.addEventListener('fetch', (e) => { 
   console.log('has fetched', e);  
   e.respondWith(
