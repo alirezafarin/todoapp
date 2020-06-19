@@ -18,5 +18,10 @@ ReactDOM.render(
    document.querySelector('#root')
 );
 
+// if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+//   window.addEventListener('load', function() {
+//       navigator.serviceWorker.register('../public/sw.js');
+//   });
+// }
 
-serviceWorker.register();
+// serviceWorker.register();

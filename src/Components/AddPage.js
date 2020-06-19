@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 
 import { addToList } from '../actions';
+import history from '../history';
 
 class AddPage extends React.Component {
 
@@ -74,6 +75,7 @@ class AddPage extends React.Component {
   onSubmit = () => {
     if( this.state.time && this.state.field && this.state.text  ) {
       this.props.addToList(this.state);
+      history.push('/');
     }
   }
 
