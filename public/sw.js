@@ -13,10 +13,10 @@ const assests = [
 
 //add install event
 self.addEventListener('install', (e) => {
-  // console.log("has been installed", e);
+  console.log("has been installed", e);
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
-      // console.log("caching assests");
+      console.log("caching assests");
       cache.addAll(assests);
     })
   );
@@ -24,7 +24,7 @@ self.addEventListener('install', (e) => {
 
 //add activate event
 self.addEventListener('activate', (e) => {
-  // console.log("has been activated", e);
+  console.log("has been activated", e);
   e.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(keys
@@ -36,7 +36,7 @@ self.addEventListener('activate', (e) => {
 
 //add fetch event listener
 self.addEventListener('fetch', (e) => { 
-  // console.log('has fetched', e);  
+  console.log('has fetched', e);  
   e.respondWith(
     caches.match(e.request).then((cacheRes) => {
       return cacheRes || fetch(e.request);

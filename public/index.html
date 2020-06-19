@@ -48,6 +48,7 @@
       //register service worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
+          console.log('registered');
           navigator.serviceWorker.register('./sw.js');
         });
       }
