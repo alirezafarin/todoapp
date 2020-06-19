@@ -1,6 +1,6 @@
 const staticCacheName = 'app-static-v4';
 const assests = [
-  'index.html',
+  './',
   './icons/list(2).png',
   './static/css/main.9ac9bcf5.chunk.css',
   './static/js/2.965e8395.chunk.js',
