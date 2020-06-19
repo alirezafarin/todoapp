@@ -17,7 +17,9 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log("caching assests");
-      cache.addAll(assests);
+      cache.addAll(assests)
+        .then(() => console.log('done'))
+        .catch((err) => console.log(err));
     })
   );
 })
