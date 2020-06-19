@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
 import { createStore, compose , applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -17,11 +16,3 @@ ReactDOM.render(
   </Provider>,
    document.querySelector('#root')
 );
-
-// if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-//   window.addEventListener('load', function() {
-//       navigator.serviceWorker.register('../public/sw.js');
-//   });
-// }
-
-// serviceWorker.register();
