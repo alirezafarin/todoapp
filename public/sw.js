@@ -1,5 +1,5 @@
 const staticCacheName = 'app-static-v4';
-const assests = [
+const assets = [
   '/',
   '/icons/list(2).png',
   '/static/css/main.9ac9bcf5.chunk.css',
@@ -15,8 +15,8 @@ self.addEventListener('install', (e) => {
   console.log("has been installed", e);
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
-      console.log("caching assests");
-      cache.addAll(assests)
+      console.log("caching assets");
+      cache.addAll(assets)
         .then(() => console.log('done'))
         .catch((err) => console.log(err));
     })
