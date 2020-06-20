@@ -16,7 +16,7 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log("caching assets");
-      cache.add('/')
+      cache.add('/index.html')
         .then(() => console.log('done'))
         .catch((err) => console.log(err));
     })
