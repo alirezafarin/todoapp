@@ -10,19 +10,13 @@ const staticCacheName = 'app-static-v4';
 //   'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
 // ];
 
-const assets = [
-  'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
-  'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
-];
-
 //add install event
 self.addEventListener('install', (e) => {
   console.log("has been installed", e);
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log("caching assets");
-      cache.addAll(assets)
+      cache.add('/icons/list(2).png')
         .then(() => console.log('done'))
         .catch((err) => console.log(err));
     })
