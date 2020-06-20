@@ -1,14 +1,13 @@
 const staticCacheName = 'app-static-v4';
-// const assets = [
-//   '/',
-//   '/icons/list(2).png',
-//   '/static/css/main.9ac9bcf5.chunk.css',
-//   '/static/js/2.965e8395.chunk.js',
-//   '/static/js/main.1859bc82.chunk.js',
-//   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-//   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
-//   'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
-// ];
+const assets = [
+  '/',
+  '/icons/list(2).png',
+  '/static/css/main.9ac9bcf5.chunk.css',
+  '/static/js/2.965e8395.chunk.js',
+  'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
+  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
+  'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
+];
 
 //add install event
 self.addEventListener('install', (e) => {
@@ -16,7 +15,7 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log("caching assets");
-      cache.add('/index.html')
+      cache.addAll(assets)
         .then(() => console.log('done'))
         .catch((err) => console.log(err));
     })
