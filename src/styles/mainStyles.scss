@@ -80,7 +80,7 @@ body {
 }
 
 .day {
-  padding: 0 6px 0 6px; 
+  padding: 0 9px 0 9px; 
   margin: 5px 0 5px 0;
 }
 
@@ -99,99 +99,84 @@ body {
   padding-top: 20px;
 }
 
-.list-item-content {
-  border-bottom: 0.3px solid $light-purple;
+.list-item {
+  border-color: $light-light-purple !important;
 }
 
-.list-item-icon {
-  font-size: 50px;
-  color: $light-light-purple;
-  
-}
-
-.list-item-header span {
-  font-size: 25px;
-}
-
-.list-item-body {
-  font-size: 20px;
-  color: $light-black;
-  width: 100%;
-}
-
-.add-to-list-icon {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  color: $dark-purple;
-  font-size: 50px;
-}
-
-.add-page {
-  height: 100vh;
-  @include background;
-}
-
-.create-a-list {
-  width: 90%;
-  background-color: white;
-  border-radius: 0.6rem;
-}
-
-.create-list-date {
-  color: $light-black;
-}
-
-.dropdown-button {
+.checkbox {
   position: relative;
-  width: 200px;
-  padding: 3px 10px 3px 10px;
-  margin: auto;
+  width: 2em;
+  height: 2em;
+  color: $light-light-purple;
+  border: 1px solid $light-light-purple;
+  border-radius: 4px;
+  appearance: none;
+  outline: 0;
+  transition: all 175ms linear;
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 3.5px;
+    left: 10px;
+    width: 10px;
+    height: 18px;
+    border-style: solid;
+    border-color: $light;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  &:checked {
+    color: $light;
+    border-color: $dark-purple;
+    background: $dark-purple;
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+label {
+  position: relative;
+  font-weight: 600;
+  padding: 0 1.3rem 0 0;
+  margin: 0;
+}
+
+label .list-item-text {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+label .list-item-time {
+  font-size: 1.2rem;
+  color: $light-black;
+}
+
+#add-to-list {
+  width: 100%;
+  padding: 2% 5% 0 5%;
+}
+
+#add-to-list input {
+  border: 1px solid $light-light-purple;
+  border-radius: 0.4rem;
+}
+
+#add-to-list span {
+  color: $dark-purple;
+  background-color: white;
+}
+
+#add-to-list button {
   background-color: $dark-purple;
   color: white;
-  font-size: 18px;
-  border-radius: 0.3rem;
-  border: 1px solid $dark-purple;
+  border-radius: 0.4rem;
 }
 
-.dropdown-items {
-  display: none;
-  position: absolute;
-  top: 42px;
-  left: 0;
-  background-color: white;
-  color: $dark-purple;
-  width: 200px;
-  margin: auto;
-  z-index: 1;
-  border: 1px solid $dark-purple;
-  border-radius: 0.5rem;
-}
-
-.dropdown-items li {
-  border-bottom: 1px solid $dark-purple;
-}
-
-.dropdown-items li:last-child {
-  border: none;
-}
-
-.openDropDown {
-  display: block;
-}
-
-.dropdown-icon-down {
-  transition: all 0.5s ease;
-  transform: rotate(180deg);
-}
-
-.dropdown-items li {
-  padding: 8px;
-  list-style-type: none;
-  text-align: center;
-}
-
-.submit-list, .discard-list {
-  font-size: 50px;
-  color: $light-purple;
+.delete-icon {
+  font-size: 25px;
+  margin-left: 20px;
+  color: $delete-red;
 }

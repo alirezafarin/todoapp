@@ -10,6 +10,9 @@ export default (state={ lists: [] }, action) => {
 
     case 'FETCH_LISTS':
       return { ...state, lists: action.payload };
+
+    case 'CHECK_ITEM':
+      return { ...state };  
       
     default:
       return state;  

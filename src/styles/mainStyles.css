@@ -83,7 +83,7 @@ body {
 }
 
 .day {
-  padding: 0 6px 0 6px;
+  padding: 0 9px 0 9px;
   margin: 5px 0 5px 0;
 }
 
@@ -102,103 +102,92 @@ body {
   padding-top: 20px;
 }
 
-.list-item-content {
-  border-bottom: 0.3px solid #CA7CEF;
+.list-item {
+  border-color: #A89EDD !important;
 }
 
-.list-item-icon {
-  font-size: 50px;
-  color: #A89EDD;
-}
-
-.list-item-header span {
-  font-size: 25px;
-}
-
-.list-item-body {
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-}
-
-.add-to-list-icon {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  color: #956FDD;
-  font-size: 50px;
-}
-
-.add-page {
-  height: 100vh;
-  background: #956FDD;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(7%, #956FDD), to(#CA7CEF));
-  background: linear-gradient(0deg, #956FDD 7%, #CA7CEF 100%);
-}
-
-.create-a-list {
-  width: 90%;
-  background-color: white;
-  border-radius: 0.6rem;
-}
-
-.create-list-date {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.dropdown-button {
+.checkbox {
   position: relative;
-  width: 200px;
-  padding: 3px 10px 3px 10px;
-  margin: auto;
+  width: 2em;
+  height: 2em;
+  color: #A89EDD;
+  border: 1px solid #A89EDD;
+  border-radius: 4px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  -webkit-transition: all 175ms linear;
+  transition: all 175ms linear;
+}
+
+.checkbox::before {
+  position: absolute;
+  content: '';
+  display: block;
+  top: 3.5px;
+  left: 10px;
+  width: 10px;
+  height: 18px;
+  border-style: solid;
+  border-color: #DBD6E7;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0;
+}
+
+.checkbox:checked {
+  color: #DBD6E7;
+  border-color: #956FDD;
+  background: #956FDD;
+}
+
+.checkbox:checked::before {
+  opacity: 1;
+}
+
+label {
+  position: relative;
+  font-weight: 600;
+  padding: 0 1.3rem 0 0;
+  margin: 0;
+}
+
+label .list-item-text {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+label .list-item-time {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#add-to-list {
+  width: 100%;
+  padding: 2% 5% 0 5%;
+}
+
+#add-to-list input {
+  border: 1px solid #A89EDD;
+  border-radius: 0.4rem;
+}
+
+#add-to-list span {
+  color: #956FDD;
+  background-color: white;
+}
+
+#add-to-list button {
   background-color: #956FDD;
   color: white;
-  font-size: 18px;
-  border-radius: 0.3rem;
-  border: 1px solid #956FDD;
+  border-radius: 0.4rem;
 }
 
-.dropdown-items {
-  display: none;
-  position: absolute;
-  top: 42px;
-  left: 0;
-  background-color: white;
-  color: #956FDD;
-  width: 200px;
-  margin: auto;
-  z-index: 1;
-  border: 1px solid #956FDD;
-  border-radius: 0.5rem;
-}
-
-.dropdown-items li {
-  border-bottom: 1px solid #956FDD;
-}
-
-.dropdown-items li:last-child {
-  border: none;
-}
-
-.openDropDown {
-  display: block;
-}
-
-.dropdown-icon-down {
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
-.dropdown-items li {
-  padding: 8px;
-  list-style-type: none;
-  text-align: center;
-}
-
-.submit-list, .discard-list {
-  font-size: 50px;
-  color: #CA7CEF;
+.delete-icon {
+  font-size: 25px;
+  margin-left: 20px;
+  color: #cc0000;
 }
 /*# sourceMappingURL=mainStyles.css.map */

@@ -4,7 +4,6 @@ import { Router, Route, Switch } from 'react-router-dom';
 import '../styles/mainStyles.css';
 import history from '../history';
 import Home from './Home';
-import AddPage from './AddPage';
 
 const App = () => {
 
@@ -12,8 +11,7 @@ const App = () => {
     <div>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/add" component={AddPage} />          
+          <Route exact path="/" component={Home} />       
         </Switch>
       </Router>
     </div>

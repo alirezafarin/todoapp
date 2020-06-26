@@ -5,9 +5,9 @@ import {
     SELECT_DAY,
     ADD_TO_LIST,
     FETCH_LISTS,
-    DELETE_ITEM } from './actionTypes';
+    DELETE_ITEM,
+    CHECK_ITEM } from './actionTypes';
 import db from '../db/firebase';
-import history from '../history';
 
 export const fetchDate = () => {
   let date = new persianDate();    
@@ -32,11 +32,13 @@ export const selectDay = (day) => {
 }
 
 export const addToList = (inputs) => {
-  return async (dispatch) => {
-    await db.collection('lists').add({inputs});
+  return async (dispatch, getState) => {
+    let state = getState().date;
+    let day = state.sDay || state.day;
+    await db.collection('lists').add({...inputs, checked: false, day});
 
     dispatch({
-      type: ADD_TO_LIST,
+      type: ADD_TO_LIST
     });
   }
 }
@@ -46,7 +48,7 @@ export const fetchLists = () => {
   return async (dispatch) => {
     let querySnapshot = await db.collection("lists").get();
     querySnapshot.forEach(function(doc) {
-      lists.push({ ...doc.data().inputs, id: doc.id });
+      lists.push({ ...doc.data(), id: doc.id });
     });
 
     dispatch({
@@ -62,6 +64,18 @@ export const deleteItem = (id) => {
 
     dispatch({
       type: DELETE_ITEM
+    });
+  }
+}
+
+export const checkItem = (id, checked) => {
+  return async (dispatch) => {
+    await db.collection('lists').doc(id).update({
+      checked
+    });
+
+    dispatch({
+      type: CHECK_ITEM
     });
   }
 }

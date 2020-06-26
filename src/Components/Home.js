@@ -4,7 +4,7 @@ import TopBar from './TopBar';
 import SideNav from './SideNav';
 import Calendar from './Calendar';
 import List from './List';
-import AddIcon from './AddIcon';
+import AddtoList from './AddToList';
 
 const Home = () => {
 
@@ -13,8 +13,8 @@ const Home = () => {
         <TopBar />
         <SideNav />
         <Calendar/>
+        <AddtoList/>
         <List/>
-        <AddIcon/>
     </React.Fragment>
   );
 }

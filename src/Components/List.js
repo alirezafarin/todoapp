@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 
 import ListItem from './ListItem';
-import { fetchLists, deleteItem } from '../actions';
+import { fetchLists, deleteItem, checkItem } from '../actions';
 
 class List extends React.Component {
   
@@ -11,13 +11,33 @@ class List extends React.Component {
     this.props.fetchLists();
   }
 
+  componentDidUpdate() {
+    this.props.fetchLists();
+  }
+
+  checkList = (e) => {
+    let id = e.target.id;
+    let checked = e.target.checked ? true : false;
+    this.props.checkItem(id, checked);
+  }
+
   renderList() {
     if(this.props.date.day) {
       let day = (this.props.date.sDay ? this.props.date.sDay : this.props.date.day);
+      //sort todos by time
+      this.props.lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
       return this.props.lists.map((toDo) => {
         if(toDo.day == day) {
           return(
-            <ListItem key={toDo.id} id={toDo.id} title={toDo.field} time={toDo.time} text={toDo.text}/>
+            <ListItem
+              key={toDo.id}
+              id={toDo.id}
+              hour={toDo.hour}
+              minute={toDo.minute}
+              text={toDo.text}
+              checked={toDo.checked}
+              checkList={this.checkList}
+            />
           );
         }
       });
@@ -25,11 +45,12 @@ class List extends React.Component {
 
   }
   
-  //FIXME:
   deleteFromList = (e) => {
-    let node = $(e.target).closest('.list-item')[0];
-    let id = node.id;
-    // this.props.deleteItem(id);
+    if( e.target.id === 'delete-icon' ) {
+      let node = $(e.target).closest('.list-item')[0];
+      let id = node.id;
+      this.props.deleteItem(id);
+    }
   }
 
   render() {
@@ -50,5 +71,6 @@ const mapStateToProps = (state) => {
 
 export default connect( mapStateToProps, {
   fetchLists,
-  deleteItem
+  deleteItem,
+  checkItem
 } )(List);
