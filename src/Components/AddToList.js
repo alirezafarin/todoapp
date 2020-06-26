@@ -7,30 +7,22 @@ class AddToList extends React.Component {
 
   state = { text: '', minute: '', hour: '' };
 
-  //FIXME:
   setTime = (e) => {
+    let limit = { minute: 59, hour: 23 };
     let value = e.target.value;
+    let fieldType = e.target.dataset.type;   //hour or minute
+
     if( value.length > 2 ) {
       e.target.value = value.slice(1);
     }
     if( value.length === 1 ) {
       e.target.value = "0" + value;
     }
-    if( value < 0 ) {
+    if( value < 0 || value > limit[fieldType] ) {
       e.target.value = "00";
     }
-    if( e.target.dataset.type === 'minute' ) {
-      if( e.target.value > 59 ) {
-        e.target.value = '59';
-      }
-      this.setState({ minute: e.target.value });
-    }
-    else {
-      if( e.target.value > 23 ) {
-        e.target.value = '23';
-      }
-      this.setState({ hour: e.target.value });
-    }
+
+    this.setState({ [fieldType]: e.target.value });
   }
 
   onSubmit = (e) => {
@@ -63,9 +55,9 @@ class AddToList extends React.Component {
                 type="number"
                 data-type="minute"
                 placeholder="دقیقه"
-                onChange={(e) => this.setTime(e)}
                 tabIndex="3"
                 required
+                onChange={(e) => this.setTime(e)}
               />
               <div className="input-group-append">
                 <span className="input-group-text border rounded">:</span>
@@ -76,9 +68,9 @@ class AddToList extends React.Component {
                 data-type="hour"
                 type="number"
                 placeholder="ساعت"
-                onChange={(e) => this.setTime(e)}
                 tabIndex="2"
                 required
+                onChange={(e) => this.setTime(e)}
               />
             </div> 
             <button className="btn w-50 mr-2" type="submit">اضافه کردن</button>

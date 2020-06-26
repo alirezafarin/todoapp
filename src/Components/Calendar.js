@@ -25,7 +25,6 @@ class Calendar extends React.Component {
       let weekDays = [ "جمعه", "پنج", "چهار", "سه", "دو", "یک", "شنبه" ];
       return [1, 2, 3, 4, 5, 6, 7].map((i) => {
         let day = this.props.date.day - ( this.props.date.dWeek - i );
-        let sDay = this.props.date.sDay || '';
         return(
           <CalendarItem
             key={day}
