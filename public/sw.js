@@ -2,9 +2,9 @@ const staticCacheName = 'app-static-v4';
 const assets = [
   '/',
   '/icons/list(2).png',
-  '/static/css/main.9ac9bcf5.chunk.css',
-  '/static/js/2.965e8395.chunk.js',
-  '/static/js/main.38aa6eb8.chunk.js',
+  '/static/css/"/static/css/main.c64ebd2d.chunk.css"',
+  '/static/js/2.4071fcee.chunk.js',
+  '/static/js/main.4d86671b.chunk.js',
   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
   'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
