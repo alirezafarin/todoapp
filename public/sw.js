@@ -2,7 +2,7 @@ const staticCacheName = 'app-static-v4';
 const assets = [
   '/',
   '/icons/list(2).png',
-  '/static/css/"/static/css/main.c64ebd2d.chunk.css"',
+  '/static/css/main.c64ebd2d.chunk.css',
   '/static/js/2.4071fcee.chunk.js',
   '/static/js/main.4d86671b.chunk.js',
   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
