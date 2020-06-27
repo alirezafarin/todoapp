@@ -55,6 +55,8 @@ class AddToList extends React.Component {
                 type="number"
                 data-type="minute"
                 placeholder="دقیقه"
+                max="59"
+                min="0"
                 tabIndex="3"
                 required
                 onChange={(e) => this.setTime(e)}
@@ -68,6 +70,8 @@ class AddToList extends React.Component {
                 data-type="hour"
                 type="number"
                 placeholder="ساعت"
+                max="23"
+                min="0"
                 tabIndex="2"
                 required
                 onChange={(e) => this.setTime(e)}
