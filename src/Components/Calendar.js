@@ -39,24 +39,22 @@ class Calendar extends React.Component {
 
   render() {
     return(
-      <section id="calender">
-        <div className="text-light">
-          <div className="calender-top d-flex align-items-center justify-content-around">
-            <div className="top-date">
-              <div className="top-week text-center">
-                {this.props.date.week}
-              </div>
-              <div className="top-month">
-                {this.props.date.year} {this.props.date.month}
-              </div>
+      <section id="calender" className="sticky-top">
+        <div className="calender-top d-flex align-items-center justify-content-around text-light">
+          <div className="top-date">
+            <div className="top-week text-center">
+              {this.props.date.week}
             </div>
-            <div className="top-day">
-              {this.props.date.day}
+            <div className="top-month">
+              {this.props.date.year} {this.props.date.month}
             </div>
-          </div> 
-          <div className="calender-bottom d-flex justify-content-between" onClick={(e) => this.selectDay(e)}>
-            {this.renderCalenderItem()}
           </div>
+          <div className="top-day">
+            {this.props.date.day}
+          </div>
+        </div> 
+        <div className="calender-bottom d-flex justify-content-between text-light" onClick={(e) => this.selectDay(e)}>
+          {this.renderCalenderItem()}
         </div>
       </section>
     );
