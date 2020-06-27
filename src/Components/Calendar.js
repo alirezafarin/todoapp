@@ -9,6 +9,23 @@ class Calendar extends React.Component {
 
   componentDidMount() {
     this.props.fetchDate();
+
+    window.addEventListener('scroll', function() {
+
+      let node = $('.calender-bottom')[0];
+      let coords = node.getBoundingClientRect();
+      if ( coords.top <= 0 ) {
+        $("#calender").addClass("sticky-top");
+        $('.calender-top').addClass('gone');
+      } 
+
+      if( coords.top > 0 ) {
+        $("#calender").removeClass("sticky-top");
+        $('.calender-top').removeClass('gone');
+      }
+
+    });
+
   }
 
   selectDay = (e) => {
@@ -31,7 +48,8 @@ class Calendar extends React.Component {
             weekDay={weekDays[7-i]}
             monthDay={day}
             today={this.props.date.day === day}
-            sDay={this.props.date.sDay == day} />
+            sDay={this.props.date.sDay == day}
+          />
         );
       });
     }
@@ -39,7 +57,7 @@ class Calendar extends React.Component {
 
   render() {
     return(
-      <section id="calender" className="sticky-top">
+      <section id="calender">
         <div className="calender-top d-flex align-items-center justify-content-around text-light">
           <div className="top-date">
             <div className="top-week text-center">
