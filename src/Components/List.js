@@ -25,15 +25,19 @@ class List extends React.Component {
     if(this.props.date.day) {
       let day = (this.props.date.sDay ? this.props.date.sDay : this.props.date.day);
       //sort todos by time
-      this.props.lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
+      this.props.lists.sort((a, b) => {
+        let timeA = a.time.split(':');
+        let timeB = b.time.split(':');
+
+        return (timeA.join('')) - (timeB.join(''));
+      });
       return this.props.lists.map((toDo) => {
         if(toDo.day == day) {
           return(
             <ListItem
               key={toDo.id}
               id={toDo.id}
-              hour={toDo.hour}
-              minute={toDo.minute}
+              time={toDo.time}
               text={toDo.text}
               checked={toDo.checked}
               checkList={this.checkList}

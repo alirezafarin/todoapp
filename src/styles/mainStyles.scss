@@ -170,6 +170,10 @@ label .list-item-time {
   border-radius: 0.4rem;
 }
 
+input[type='time'] {
+  color: $dark-purple;
+}
+
 #add-to-list span {
   color: $dark-purple;
   background-color: white;

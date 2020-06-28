@@ -180,6 +180,10 @@ label .list-item-time {
   border-radius: 0.4rem;
 }
 
+input[type='time'] {
+  color: #956FDD;
+}
+
 #add-to-list span {
   color: #956FDD;
   background-color: white;
