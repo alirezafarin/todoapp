@@ -91,15 +91,16 @@ body {
 .day {
   padding: 0 5px 0 5px;
   margin: 5px 0 5px 0;
+  border-radius: 50%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .today {
-  border-radius: 50%;
   background-color: #A89EDD;
 }
 
 .selected-day {
-  border-radius: 50%;
   background-color: white;
   color: #956FDD;
 }
@@ -177,15 +178,31 @@ label .list-item-time {
   border-radius: 0.4rem;
 }
 
-#add-to-list span {
+.add-icon {
   color: #956FDD;
+  opacity: 0.5;
   font-size: 55px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.add-active {
+  opacity: 1;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
 }
 
 .delete-icon {
   font-size: 25px;
   margin-left: 20px;
   color: #cc0000;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.delete-clicked {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .clock-arrow {
@@ -195,11 +212,26 @@ label .list-item-time {
   width: 50px;
   border: 0.5px solid #CA7CEF;
   border-radius: 0.5rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .hour-now, .minute-now {
   font-size: 27px;
   color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.selected-time {
+  color: rgba(0, 0, 0, 0.8);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.clicked-arrow {
+  background-color: #CA7CEF;
+  color: white;
 }
 
 .modal {

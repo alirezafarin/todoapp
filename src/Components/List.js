@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ListItem from './ListItem';
 import { fetchLists, deleteItem, checkItem } from '../actions';
+import { animateOnClick } from '../animation';
 
 class List extends React.Component {
   
@@ -48,6 +49,7 @@ class List extends React.Component {
   deleteFromList = (e) => {
     if( e.target.id === 'delete-icon' ) {
       let node = $(e.target).closest('.list-item')[0];
+      animateOnClick($('.delete-icon'), 'delete-clicked');
       let id = node.id;
       this.props.deleteItem(id);
     }
