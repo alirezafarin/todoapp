@@ -181,7 +181,8 @@ label .list-item-time {
 }
 
 .delete-icon {
-  font-size: 25px;
+  font-size: 30px;
+  padding-left: 10px;
   margin-left: 20px;
   color: $delete-red;
   transition: all 0.5s ease;

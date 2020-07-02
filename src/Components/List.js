@@ -12,10 +12,6 @@ class List extends React.Component {
     this.props.fetchLists();
   }
 
-  componentDidUpdate() {
-    this.props.fetchLists();
-  }
-
   checkList = (e) => {
     let id = e.target.id;
     let checked = e.target.checked ? true : false;
@@ -25,9 +21,10 @@ class List extends React.Component {
   renderList() {
     if(this.props.date.day) {
       let day = (this.props.date.sDay ? this.props.date.sDay : this.props.date.day);
+      let lists = Object.values(this.props.lists);
       //sort todos by time
-      this.props.lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
-      return this.props.lists.map((toDo) => {
+      lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
+      return lists.map((toDo) => {
         if(toDo.day == day) {
           return(
             <ListItem
@@ -68,7 +65,7 @@ class List extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { lists: state.lists.lists, date: state.date };
+  return { lists: state.lists, date: state.date };
 }
 
 export default connect( mapStateToProps, {

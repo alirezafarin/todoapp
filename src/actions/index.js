@@ -35,20 +35,21 @@ export const addToList = (inputs) => {
   return async (dispatch, getState) => {
     let state = getState().date;
     let day = state.sDay || state.day;
-    await db.collection('lists').add({...inputs, checked: false, day});
-
+    let listObject = {...inputs, checked: false, day};
+    let docRef = await db.collection('lists').add(listObject);
     dispatch({
-      type: ADD_TO_LIST
+      type: ADD_TO_LIST,
+      payload: { [docRef.id]: { ...listObject, id: docRef.id } }
     });
   }
 }
 
 export const fetchLists = () => {
-  let lists = [];
+  let lists = {};
   return async (dispatch) => {
     let querySnapshot = await db.collection("lists").get();
     querySnapshot.forEach(function(doc) {
-      lists.push({ ...doc.data(), id: doc.id });
+      lists[doc.id] = { ...doc.data(), id: doc.id };
     });
 
     dispatch({
@@ -63,19 +64,22 @@ export const deleteItem = (id) => {
     await db.collection('lists').doc(id).delete();
 
     dispatch({
-      type: DELETE_ITEM
+      type: DELETE_ITEM,
+      payload: id
     });
   }
 }
 
 export const checkItem = (id, checked) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     await db.collection('lists').doc(id).update({
       checked
     });
+    let listToCheck = getState().lists[id];
 
     dispatch({
-      type: CHECK_ITEM
+      type: CHECK_ITEM,
+      payload: { [id]: { ...listToCheck, checked } }
     });
   }
 }

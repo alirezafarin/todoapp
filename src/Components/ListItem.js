@@ -11,7 +11,9 @@ const ListItem = (props) => {
         checked={props.checked}
         onChange={(e) => props.checkList(e)}
       />
-      <label className="list-item-info d-flex flex-column py-2 text-right" htmlFor={props.id}>
+      <label
+        className="list-item-info d-flex flex-column py-2 text-right"
+        htmlFor={props.id}>
         <span className="list-item-text">{props.text}</span>
         <span className="list-item-time text-right">{props.hour}:{props.minute}</span>
       </label>
