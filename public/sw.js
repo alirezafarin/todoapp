@@ -1,10 +1,10 @@
-const staticCacheName = 'app-static-v12';
+const staticCacheName = 'app-static-v13';
 const assets = [
   '/',
   '/icons/list(2).png',
-  '/static/css/main.e3810bba.chunk.css',
-  '/static/js/2.fbe64d6d.chunk.js',
-  '/static/js/main.aa218526.chunk.js',
+  '/static/css/main.0a4d7a09.chunk.css',
+  '/static/js/2.371f092f.chunk.js',
+  '/static/js/main.36200347.chunk.js',
   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
   'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
