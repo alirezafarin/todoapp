@@ -12,6 +12,15 @@ class List extends React.Component {
     this.props.fetchLists();
   }
 
+  componentDidUpdate(prevState) {
+    let prevChecked = Object.values(prevState.lists).map((item) => item.checked);
+    let presentChecked = Object.values(this.props.lists).map((item) => item.checked);
+    
+    if( Object.values(prevState.lists).length !== Object.values(this.props.lists).length || prevChecked.join(' ') !== presentChecked.join(' ') ) {
+      this.props.fetchLists();
+    }
+  }
+
   checkList = (e) => {
     let id = e.target.id;
     let checked = e.target.checked ? true : false;
