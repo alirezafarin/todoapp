@@ -13,13 +13,12 @@ class List extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    this.props.fetchLists();
-    // let prevChecked = Object.values(prevState.lists).map((item) => item.checked);
-    // let presentChecked = Object.values(this.props.lists).map((item) => item.checked);
+    let prevChecked = Object.values(prevState.lists).map((item) => item.checked);
+    let presentChecked = Object.values(this.props.lists).map((item) => item.checked);
     
-    // if( Object.values(prevState.lists).length !== Object.values(this.props.lists).length || prevChecked.join(' ') !== presentChecked.join(' ') ) {
-    //   this.props.fetchLists();
-    // }
+    if( Object.values(prevState.lists).length !== Object.values(this.props.lists).length || prevChecked.join(' ') !== presentChecked.join(' ') ) {
+      this.props.fetchLists();
+    }
   }
 
   checkList = (e) => {
