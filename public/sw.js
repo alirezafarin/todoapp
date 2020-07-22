@@ -1,4 +1,4 @@
-const staticCacheName = 'app-static-v27';
+const staticCacheName = 'app-static-v28';
 const assets = [
   '/',
   '/icons/list(2).png',
