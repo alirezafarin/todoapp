@@ -36,7 +36,9 @@ export const addToList = (inputs) => {
     let state = getState().date;
     let day = state.sDay || state.day;
     let listObject = {...inputs, checked: false, day};
-    let docRef = await db.collection('lists').add(listObject);
+    let docRef = await db.collection('lists').add(listObject).catch((err) => {
+      console.log(err);
+    });
     dispatch({
       type: ADD_TO_LIST,
       payload: { [docRef.id]: { ...listObject, id: docRef.id } }
