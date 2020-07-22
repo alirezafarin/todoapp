@@ -12,20 +12,11 @@ class List extends React.Component {
     this.props.fetchLists();
   }
 
-  componentDidUpdate(prevState) {
-    this.props.fetchLists();
-    // let prevChecked = Object.values(prevState.lists).map((item) => item.checked);
-    // let presentChecked = Object.values(this.props.lists).map((item) => item.checked);
-    
-    // if( Object.values(prevState.lists).length !== Object.values(this.props.lists).length || prevChecked.join(' ') !== presentChecked.join(' ') ) {
-    //   this.props.fetchLists();
-    // }
-  }
-
   checkList = (e) => {
     let id = e.target.id;
     let checked = e.target.checked ? true : false;
     this.props.checkItem(id, checked);
+    this.props.fetchLists();
   }
 
   renderList() {
@@ -59,6 +50,7 @@ class List extends React.Component {
       animateOnClick($('.delete-icon'), 'delete-clicked');
       let id = node.id;
       this.props.deleteItem(id);
+      this.props.fetchLists();
     }
   }
 
