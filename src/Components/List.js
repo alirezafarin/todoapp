@@ -12,6 +12,15 @@ class List extends React.Component {
     this.props.fetchLists();
   }
 
+  componentDidUpdate(prevProps) {
+    let list = Object.values(this.props.lists);
+    let prevList = Object.values(prevProps.lists);
+    if( list.length !== prevList.length ) {
+      this.props.fetchLists();
+      console.log('deleted');
+    }
+  }
+
   checkList = (e) => {
     let id = e.target.id;
     let checked = e.target.checked ? true : false;
@@ -26,9 +35,6 @@ class List extends React.Component {
       //sort todos by time
       lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
       return lists.map((toDo) => {
-        if(toDo === undefined) {
-          return null;
-        }
         if(toDo.day == day) {
           return(
             <ListItem
@@ -53,7 +59,6 @@ class List extends React.Component {
       animateOnClick($('.delete-icon'), 'delete-clicked');
       let id = node.id;
       this.props.deleteItem(id);
-      this.props.fetchLists();
     }
   }
 
