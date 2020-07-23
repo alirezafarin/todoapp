@@ -67,6 +67,7 @@ export const deleteItem = (id) => {
 
     dispatch({
       type: DELETE_ITEM,
+      payload, id
     });
   }
 }
