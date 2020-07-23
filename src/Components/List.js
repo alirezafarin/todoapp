@@ -29,7 +29,10 @@ class List extends React.Component {
       //sort todos by time
       lists.sort((a, b) => (a.hour + a.minute) - (b.hour + b.minute));
       return lists.map((toDo) => {
-        if(toDo.day == day) {
+        if( toDo === undefined ) {
+          return null;
+        }
+        else if(toDo.day == day) {
           return(
             <ListItem
               key={toDo.id}

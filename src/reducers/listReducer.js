@@ -8,7 +8,7 @@ export default (state={}, action) => {
       return { ...state, ...action.payload };
 
     case 'DELETE_ITEM':
-      return { ..._.omit(state, action.payload) };
+      return { ...state, [action.payload]: undefined };
 
     case 'FETCH_LISTS':
       return { ...state, ...action.payload };
