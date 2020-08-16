@@ -1,12 +1,14 @@
-const STATIC_CACHE = 'static-v01';
-const DYNAMIC_CACHE = 'dynamic-v1'
+const STATIC_CACHE = 'static-v02';
+const DYNAMIC_CACHE = 'dynamic-v02'
 
 const assets = [
   '/',
   '/icons/list(2).png',
   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
-  'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
+  'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff',
+  '/firebasejs/7.17.2/firebase-firestore.js',
+  '/firebasejs/7.17.2/firebase-app.js'
 ];
 
 //add install event
