@@ -16,7 +16,6 @@ class List extends React.Component {
     let id = e.target.id;
     let checked = e.target.checked ? true : false;
     this.props.checkItem(id, checked);
-    this.props.fetchLists();
   }
 
   renderList() {
@@ -53,7 +52,6 @@ class List extends React.Component {
       animateOnClick($('.delete-icon'), 'delete-clicked');
       let id = node.id;
       this.props.deleteItem(id);
-      this.props.fetchLists();
     }
   }
 

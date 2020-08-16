@@ -1,10 +1,9 @@
-const staticCacheName = 'app-static-v03';
+const STATIC_CACHE = 'static-v01';
+const DYNAMIC_CACHE = 'dynamic-v1'
+
 const assets = [
   '/',
   '/icons/list(2).png',
-  '/static/css/main.0a4d7a09.chunk.css',
-  '/static/js/2.371f092f.chunk.js',
-  '/static/js/main.2ba484e0.chunk.js',
   'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
   'https://use.fontawesome.com/releases/v5.0.13/webfonts/fa-solid-900.woff'
@@ -14,7 +13,7 @@ const assets = [
 self.addEventListener('install', (e) => {
   console.log("has been installed", e);
   e.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
+    caches.open(STATIC_CACHE).then((cache) => {
       console.log("caching assets");
       cache.addAll(assets)
         .then(() => console.log('done'))
@@ -29,18 +28,32 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(keys
-        .filter((key) => key !== staticCacheName)
+        .filter((key) => key !== STATIC_CACHE && key !== DYNAMIC_CACHE)
         .map((key) => caches.delete(key)));
     })
   );
 })
 
-//add fetch event listener sadsa
-self.addEventListener('fetch', (e) => { 
-  console.log('has fetched', e);  
-  e.respondWith(
-    caches.match(e.request).then((cacheRes) => {
-      return cacheRes || fetch(e.request);
-    })
-  );
+//fetch Event
+self.addEventListener('fetch', function(e) {
+  //don't cache anything from firebase firestore
+  if( e.request.url.indexOf('firestore.googleapis.com') === -1 ){
+    e.respondWith(
+      caches.match(e.request).then((response) => {
+        if( response ) {
+          return response;
+        }
+        else {
+          return fetch(e.request)
+          .then((res) => {
+            //dynamic catching
+            return caches.open(DYNAMIC_CACHE).then((cache) => {
+              cache.put(e.request.url, res.clone());
+              return res;
+            });
+          })
+        }
+      }).catch(() => {})
+    );
+  }
 })

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { animateOnClick } from '../animation';
 import Modal from './Modal';
-import { addToList, fetchLists } from '../actions';
+import { addToList } from '../actions';
 
 class AddToList extends React.Component {
 
@@ -21,7 +21,6 @@ class AddToList extends React.Component {
     this.props.addToList(this.state);
     this.setState({ text: '' });
     $(".modal").removeClass('open-modal');
-    this.props.fetchLists();
   }
 
   openModal = () => {
@@ -83,6 +82,5 @@ class AddToList extends React.Component {
 }
 
 export default connect( null, {
-  fetchLists,
   addToList
 })(AddToList);
